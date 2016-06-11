@@ -31,6 +31,8 @@ local function handleControl()
     io.write(payload)
     slotNumber = io.read("*n")
     tunnel.send(tostring(slotNumber))
+  elseif keyboard.isKeyDown(keyboard.keys.r) then
+    tunnel.send("r")
   elseif keyboard.isKeyDown(keyboard.keys.c) then
     tunnel.send("c")
     os.exit()
@@ -45,7 +47,7 @@ function printKeys()
   print("s = backward   z = swing")
   print("a = turn left  v = place")
   print("d = turn right  f = select inventory slot")
-  print("q = up")
+  print("q = up  r = beep")
   print("e = down")
 end
 
