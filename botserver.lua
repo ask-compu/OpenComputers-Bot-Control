@@ -60,8 +60,12 @@ local function handleControl()
     local _, localNetworkCard, remoteAddress, port, distance, payload = event.pull("modem_message")
     number = tostring(robot.select(tonumber(payload)))
     tunnel.send(number)
+  elseif payload == "r" then
+    computer.beep(500, 0.25)
+    tunnel.send("beep!")
   elseif payload == "e" then
     failed, message = robot.down()
+    tunnel.send(handleResponse(failed, message))
   end
 end
 
