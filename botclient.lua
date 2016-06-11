@@ -19,20 +19,37 @@ local function handleControl()
     tunnel.send("q")
   elseif keyboard.isKeyDown(keyboard.keys.e) then
     tunnel.send("e")
+  elseif keyboard.isKeyDown(keyboard.keys.z) then
+    tunnel.send("z")
+  elseif keyboard.isKeyDown(keyboard.keys.x) then
+    tunnel.send("x")
+  elseif keyboard.isKeyDown(keyboard.keys.v) then
+    tunnel.send("v")
+  elseif keyboard.isKeyDown(keyboard.keys.f) then
+    tunnel.send("f")
+    local _, localNetworkCard, remoteAddress, port, distance, payload = event.pull("modem_message")
+    io.write(payload)
+    slotNumber = io.read("*n")
+    tunnel.send(tostring(slotNumber))
   elseif keyboard.isKeyDown(keyboard.keys.c) then
     tunnel.send("c")
     os.exit()
   end
   local _, localNetworkCard, remoteAddress, port, distance, payload = event.pull("modem_message")
   print(payload)
+  printKeys()
 end
 
-print("w = forward")
-print("s = backward")
-print("a = turn left")
-print("d = turn right")
-print("q = up")
-print("e = down")
+function printKeys()
+  print("w = forward   x = use")
+  print("s = backward   z = swing")
+  print("a = turn left  v = place")
+  print("d = turn right  f = select inventory slot")
+  print("q = up")
+  print("e = down")
+end
+
+printKeys()
 
 while true do
   handleControl()  
