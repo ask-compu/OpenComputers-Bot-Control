@@ -46,6 +46,17 @@ local function handleControl()
   elseif payload == "z" then
     failed, message = robot.swing()
     tunnel.send(handleResponse(failed, message))
+    robot.suck()
+    robot.suckUp()
+    robot.suckDown()
+  elseif payload == "t" then
+    failed, message = robot.suck()
+    message1 = handleResponse(failed, message)
+    failed, message = robot.suckUp()
+    message2 = handleResponse(failed, message)
+    failed, message = robot.suckDown()
+    message3 = handleResponse(failed, message)
+    tunnel.send("Suck: " .. message1 .. " SuckUp: " .. message2 .. " SuckDown: ".. message3)
   elseif payload == "x" then
     failed, message = robot.use()
     tunnel.send(handleResponse(failed, message))
