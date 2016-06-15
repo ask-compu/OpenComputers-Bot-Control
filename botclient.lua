@@ -25,6 +25,8 @@ local function handleControl()
     tunnel.send("x")
   elseif keyboard.isKeyDown(keyboard.keys.v) then
     tunnel.send("v")
+  elseif keyboard.isKeyDown(keyboard.keys.t) then
+    tunnel.send("t")
   elseif keyboard.isKeyDown(keyboard.keys.f) then
     tunnel.send("f")
     local _, localNetworkCard, remoteAddress, port, distance, payload = event.pull("modem_message")
@@ -48,7 +50,7 @@ function printKeys()
   print("a = turn left  v = place")
   print("d = turn right  f = select inventory slot")
   print("q = up  r = beep")
-  print("e = down")
+  print("e = down  t = take items")
 end
 
 printKeys()
